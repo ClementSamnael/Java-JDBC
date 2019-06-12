@@ -34,7 +34,7 @@ public class App {
 		Statement st = connection.createStatement();
 
 		do {
-			System.out.print("Entrez me nom de la table : ");
+			System.out.print("Entrez le nom de la table : ");
 			response = sc.nextLine();
 			if (!response.equals("exit")) {
 				ResultSet resultSet = st.executeQuery("SELECT * FROM " + response);
@@ -44,7 +44,7 @@ public class App {
 					System.out.println("Voici les infos de la table : " + response);
 					System.out.println();
 					for (int i = 1; i <= count; ++i) {
-						System.out.printf("%-15s",
+						System.out.printf("%-20s",
 								rsMetaData.getColumnLabel(i) + "[" + rsMetaData.getColumnTypeName(i) + "]");
 					}
 					System.out.println();
@@ -52,7 +52,7 @@ public class App {
 							"======================================================================================================================");
 					while (resultSet.next()) {
 						for (int i = 1; i <= count; ++i) {
-							System.out.printf("%-15s", resultSet.getString(i));
+							System.out.printf("%-20s", resultSet.getString(i));
 						}
 						System.out.println();
 						System.out.println();
