@@ -36,31 +36,33 @@ public class App {
 		do {
 			System.out.print("Entrez me nom de la table : ");
 			response = sc.nextLine();
-			ResultSet resultSet = st.executeQuery("SELECT * FROM " + response);
-			ResultSetMetaData rsMetaData = resultSet.getMetaData();
-			int count = rsMetaData.getColumnCount();
-			if (count > 0) {
-				System.out.println("Voici les infos de la table : " + response);
-				System.out.println();
-				for (int i = 1; i <= count; ++i) {
-					System.out.printf("%-15s",
-							rsMetaData.getColumnLabel(i) + "[" + rsMetaData.getColumnTypeName(i) + "]");
-				}
-				System.out.println();
-				System.out.println(
-						"======================================================================================================================");
-				while (resultSet.next()) {
+			if (!response.equals("exit")) {
+				ResultSet resultSet = st.executeQuery("SELECT * FROM " + response);
+				ResultSetMetaData rsMetaData = resultSet.getMetaData();
+				int count = rsMetaData.getColumnCount();
+				if (count > 0) {
+					System.out.println("Voici les infos de la table : " + response);
+					System.out.println();
 					for (int i = 1; i <= count; ++i) {
-						System.out.printf("%-15s", resultSet.getString(i));
+						System.out.printf("%-15s",
+								rsMetaData.getColumnLabel(i) + "[" + rsMetaData.getColumnTypeName(i) + "]");
 					}
 					System.out.println();
-					System.out.println();
+					System.out.println(
+							"======================================================================================================================");
+					while (resultSet.next()) {
+						for (int i = 1; i <= count; ++i) {
+							System.out.printf("%-15s", resultSet.getString(i));
+						}
+						System.out.println();
+						System.out.println();
+					}
 				}
+				resultSet.close();
 			}
-			resultSet.close();
 		} while (!response.equals("exit"));
-		rs.close();
 		st.close();
+		rs.close();
 		connection.close();
 	}
 
