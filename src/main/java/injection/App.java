@@ -22,10 +22,19 @@ public class App {
 		System.out.println("Entrez votre mot de passe : ");
 		String pwdUSer = sc.nextLine();
 
-		ResultSet rs = st.executeQuery(
-				"SELECT * FROM contact WHERE email = '" + loginUser + "' AND first_name = '" + pwdUSer + "' ");
+		String query = "SELECT * FROM contact WHERE email = ? AND first_name = ?";
+
+		PreparedStatement ps = connection.prepareStatement(query);
+		ps.setString(1, loginUser);
+		ps.setString(2, pwdUSer);
+		ResultSet rs = ps.executeQuery();
+
+		System.out.println(query);
+		System.out.println(ps);
+
 		if (rs.next()) {
-			System.out.println("Bienvenue dans votre espace de travail : " + rs.getString("first_name") + " " + rs.getString("last_name"));
+			System.out.println("Bienvenue dans votre espace de travail : " + rs.getString("first_name") + " "
+					+ rs.getString("last_name"));
 		} else {
 			System.out.println("Erreur : login / mot de passe incorrect");
 		}
