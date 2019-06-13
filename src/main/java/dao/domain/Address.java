@@ -4,18 +4,18 @@ import java.util.Set;
 
 public class Address {
 
-	private long id;
+	private Long id;
 	private String details;
 	private Set<Contact> contacts;
 
 	// -----------Constructor----------------\\
-	public Address(long id, String details) {
+	public Address(Long id, String details) {
 		this.id = id;
 		this.details = details;
 	}
 
 	// -----------GETTER----------------\\
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -28,7 +28,7 @@ public class Address {
 	}
 
 	// -----------SETTER----------------\\
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

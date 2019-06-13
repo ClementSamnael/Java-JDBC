@@ -8,7 +8,7 @@ public class Contact {
 	private String email;
 	private String firstName;
 	private String lastName;
-	private Address addressId;
+	private Address address;
 
 	// -----------Constructor-------------------//
 	public Contact(long id, String email, String firstName, String lastName) {
@@ -35,8 +35,8 @@ public class Contact {
 		return lastName;
 	}
 
-	public Address getAddressId() {
-		return addressId;
+	public Address getAddress() {
+		return address;
 	}
 
 	// ------------SETTER-----------------//
@@ -56,14 +56,33 @@ public class Contact {
 		this.lastName = lastName;
 	}
 
-	public void setAddressId(Address addressId) {
-		this.addressId = addressId;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	// ------------@Override-----------------//
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, email, firstName, id, lastName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+
+		if (!(obj instanceof Contact))
+			return false;
+
+		Contact other = (Contact) obj;
+		return Objects.equals(email, other.email);
+
+	}
+
 	@Override
 	public String toString() {
-		final StringBuilder builder = new StringBuilder();
+		StringBuilder builder = new StringBuilder();
 		builder.append("Contact [id=");
 		builder.append(id);
 		builder.append(", email=");
@@ -72,25 +91,10 @@ public class Contact {
 		builder.append(firstName);
 		builder.append(", lastName=");
 		builder.append(lastName);
-		builder.append(", addressId=");
-		builder.append(addressId);
+		builder.append(", address=");
+		builder.append(address);
 		builder.append("]");
 		return builder.toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(addressId, email, firstName, id, lastName);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof Contact))
-			return false;
-		Contact other = (Contact) obj;
-		return Objects.equals(email, other.email);
 	}
 
 }

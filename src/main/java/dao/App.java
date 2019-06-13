@@ -5,11 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import dao.dal.DBConnection;
 import dao.dal.PersistenceManager;
 
 public class App {
 
 	public static void main(String[] args) {
+
+		try {
+			DBConnection db = DBConnection.getSingle();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		try (Connection cnx = PersistenceManager.getConnection();
 				Statement st = cnx.createStatement();

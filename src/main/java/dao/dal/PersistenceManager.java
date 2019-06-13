@@ -10,15 +10,10 @@ import java.util.Properties;
 //Class pour les connections
 public class PersistenceManager {
 
-//	private static final String URL = "jdbc:mysql://localhost:3306/book?useSSl=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
-//	private static final String LOGIN = "root";
-//	private static final String PWD = "";
-
 	private static final int CHECK_CONNECTION_TIMEOUT = 10;
 	private static Connection connection;
 
 	private PersistenceManager() {
-
 	}
 
 	public static Connection getConnection() throws SQLException {
