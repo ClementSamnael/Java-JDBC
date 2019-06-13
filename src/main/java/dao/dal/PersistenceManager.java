@@ -39,5 +39,4 @@ public class PersistenceManager {
 			connection.close();
 		}
 	}
-
 }
