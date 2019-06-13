@@ -11,6 +11,9 @@ public class Contact {
 	private Address address;
 
 	// -----------Constructor-------------------//
+	public Contact() {
+	}
+
 	public Contact(long id, String email, String firstName, String lastName) {
 		this.id = id;
 		this.email = email;
@@ -57,7 +60,17 @@ public class Contact {
 	}
 
 	public void setAddress(Address address) {
+		if (this.address != null) {
+			this.address.getContacts().remove(this);
+		}
 		this.address = address;
+		if (this.address != null) {
+			this.address.getContacts().add(this);
+		}
+	}
+
+	public void addContact(Contact c) {
+
 	}
 
 	// ------------@Override-----------------//

@@ -14,6 +14,13 @@ public class Address {
 		this.details = details;
 	}
 
+	public Address() {
+	}
+
+	public Address(String details) {
+		this.details = details;
+	}
+
 	// -----------GETTER----------------\\
 	public Long getId() {
 		return id;
